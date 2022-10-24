@@ -57,6 +57,17 @@ public class Manages {
         });
     }
 
+    public void sortTeacher() {
+        Collections.sort(manageTeachers, new Comparator<Teacher>() {
+            @Override
+            public int compare(Teacher o1, Teacher o2) {
+                // String s1 = o1.getSubject();
+                // String s2 = o2.getSubject();
+                return o1.getSubject().compareTo(o2.getSubject());
+            }
+        });
+    }
+
 
     public void FindStudentByName(String name) {
         for (Students o : manageStudents)

@@ -18,7 +18,6 @@ public class App {
             "199321", 29, "Girl", 9.2, "Bussiness");
         Students s5 = new Students("no4", "Banana", "Austraulina", 
             "199321", 24, "Girl", 9.2, "Docter");
-        Teacher t1 = new Teacher("T1", "Tesla", "USA", "01234", 87, "Boy", "Physics");
 
         manage.addStudent(s1);
         manage.addStudent(s2);
@@ -29,12 +28,23 @@ public class App {
         // manage.ShowAllofStudents();
 
 
-        
+        Teacher t1 = new Teacher("T1", "Tesla", "USA", "01234", 87, "Boy", "Physics");
         manage.addTeacher(t1);
-        // manage.ShowAllofTeachers();
+
+        Teacher t2 = new Teacher("T1", "Einstein", "USA", "01234", 87, "Boy", "Physics");
+        manage.addTeacher(t2);
+
+        Teacher t3 = new Teacher("T1", "Robert", "USA", "01234", 87, "Boy", "Maths");
+        manage.addTeacher(t3);
+
+        Teacher t4 = new Teacher("T1", "Davichi", "USA", "01234", 87, "Boy", "Art");
+        manage.addTeacher(t4);
+
+        manage.sortTeacher();
+        manage.ShowAllofTeachers();
         // manage.FindStudentByName("Anna");
         
-        manage.ShowAllofStudents();
+        // manage.ShowAllofStudents();
         // manage.ShowAllofTeachers();
 
         // delete
