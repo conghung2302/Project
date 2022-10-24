@@ -26,6 +26,6 @@ public class App {
         manage.sortStudentsbyGPA();
         manage.ShowAllofStudents();
         manage.ShowAllofTeachers();
-        System.out.println("Hello");
+        // delete
     }
 }
