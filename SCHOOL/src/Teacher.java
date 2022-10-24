@@ -16,8 +16,14 @@ public class Teacher extends Persions{
 
     @Override
     public String showInfor() {
-        return getName() + " " + getGender() + " " + getPhone() + " " + getAddress() + " " + getSubject()+ "\n" +
-        "----------------------------------------------------";
+        return "Teacher {" +
+                "Name = '" + getName() + '\'' +
+                ", Age = '" + getAge() + '\'' +
+                ", Gender = '" + getGender() + '\'' +
+                ", Address = '" + getAddress() + '\'' +
+                ", Phone = '" + getPhone() + '\'' +
+                ", Score = '" + getSubject() + '\'' +
+                '}';
     }
     
 }

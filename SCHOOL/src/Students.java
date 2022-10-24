@@ -24,9 +24,21 @@ public class Students extends Persions{
         this.grade = grade;
     }
 
+    // @Override
+    // public String showInfor() {
+    //     return getName() + " " + getAge() + " " + getGender() + " " + getAddress() +" " + getPhone() + " " + getScore() + "\n" +
+    //         "----------------------------------------------------";
+    // } 
+
     @Override
     public String showInfor() {
-        return getName() + " " + getAge() + " " + getGender() + " " + getAddress() +" " + getPhone() + " " + getScore() + "\n" +
-            "----------------------------------------------------";
-    } 
+        return "Student {" +
+                "Name = '" + getName() + '\'' +
+                ", Age = '" + getAge() + '\'' +
+                ", Gender = '" + getGender() + '\'' +
+                ", Address = '" + getAddress() + '\'' +
+                ", Phone = '" + getPhone() + '\'' +
+                ", Score = '" + getScore() + '\'' +
+                '}';
+    }
 }

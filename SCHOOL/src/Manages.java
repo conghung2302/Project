@@ -24,10 +24,6 @@ public class Manages {
             System.out.println(o.showInfor());
     }
 
-    public void ShowAllofTeachers() {
-        for (Teacher o : manageTeachers)
-            System.out.println(o.showInfor());    }
-
     public void sortStudentsbyName() {
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
@@ -56,23 +52,26 @@ public class Manages {
             }
         });
     }
-
-    public void sortTeacher() {
-        Collections.sort(manageTeachers, new Comparator<Teacher>() {
-            @Override
-            public int compare(Teacher o1, Teacher o2) {
-                // String s1 = o1.getSubject();
-                // String s2 = o2.getSubject();
-                return o1.getSubject().compareTo(o2.getSubject());
+    Students students;
+    public void FindHighScore() {
+        Double MAX = 0.0;
+        
+        for (Students o : manageStudents)
+            if (o.getScore() > MAX) {
+                MAX = o.getScore();
+                students = o;
             }
-        });
+        System.out.println(students.showInfor());
     }
-
 
     public void FindStudentByName(String name) {
         for (Students o : manageStudents)
             if (o.getName() == name) {
                 System.out.println(o.showInfor());
             }
+    }
+    public void ShowAllofTeachers() {
+        for (Teacher o : manageTeachers)
+            System.out.println(o.showInfor());  
     }
 }
