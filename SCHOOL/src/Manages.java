@@ -52,6 +52,7 @@ public class Manages {
             }
         });
     }
+    
     Students students;
     public void FindHighScore() {
         Double MAX = 0.0;

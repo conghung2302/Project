@@ -25,13 +25,13 @@ public class App {
         manage.addStudent(s4);
         manage.addStudent(s5);
 
-        Teacher t1 = new Teacher("T1", "Tesla", "USA", "01234", 87, "Boy", "Physics");
+        Teacher t1 = new Teacher("T1", "Tesla", "USA", "123", 87, "Boy", "Physics");
         manage.addTeacher(t1);
-        Teacher t2 = new Teacher("T1", "Einstein", "USA", "01234", 87, "Boy", "Physics");
+        Teacher t2 = new Teacher("T1", "Einstein", "USA", "345", 87, "Boy", "Physics");
         manage.addTeacher(t2);
-        Teacher t3 = new Teacher("T1", "Robert", "USA", "01234", 87, "Boy", "Physics");
+        Teacher t3 = new Teacher("T1", "Robert", "USA", "567", 87, "Boy", "Physics");
         manage.addTeacher(t3);
-        Teacher t4 = new Teacher("T1", "Davichi", "USA", "01234", 87, "Boy", "Physics");
+        Teacher t4 = new Teacher("T1", "DaVinCi", "USA", "789", 87, "Boy", "Physics");
         manage.addTeacher(t4);
 
 
