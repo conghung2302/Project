@@ -62,11 +62,9 @@ public class Manages {
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
             public int compare(Students o1, Students o2) {
-                // char s1 = o1.getName().charAt(0);
-                // char s2 = o2.getName().charAt(0);
-                // return o1.getScore() > o2.getScore() ? -1 : 1;
-                return (((o1.getScore() > o2.getScore())
-                    || (((Double)o1.getScore() == (Double)o2.getScore()) && (o1.getName().charAt(0) > o2.getName().charAt(0)))) ? -1 : 1);
+                if (o1.getScore() == o2.getScore())
+                    return o1.getName().charAt(0) - o2.getName().charAt(0) ;
+                return (o1.getScore() > o2.getScore() ? -1 : 1);
             }
         });
     }
