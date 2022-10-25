@@ -2,7 +2,8 @@ public class Students extends Persions{
     public Double Score;
     public String grade;
     
-    public Students(String id, String name, String address, String phone, int age, String gender, Double Score, String grade) {
+    public Students(String id, String name, String address, String phone, 
+            int age, String gender, Double Score, String grade) {
         super(id, name, address, phone, age, gender);
         this.Score = Score;
         this.grade = grade;

@@ -19,7 +19,8 @@ public class Manages {
     
     
 
-    public void ShowAllofStudents() {
+    public void ShowAllStudents() {
+        sortStudentsbyGPA();
         for (Students o : manageStudents)
             System.out.println(o.showInfor());
     }
@@ -32,23 +33,40 @@ public class Manages {
             }
         });
     }
+
     public void EditStudents(String id, Double gpa) {
+        boolean exist = true;
         for (Students o : manageStudents) {
-            if (o.getId() == id) {
+            if (o.getId().equals(id)) {
+                System.out.println("helloooooo");
                 o.setScore(gpa);
+                exist = false;
             }
         }
+        if (exist == false)
+            System.out.println("------Update Successful------\n");
+        else 
+            System.out.println("------Not exist this name------\n");
+    }
+
+    public void sortTeacherby() {
+        Collections.sort(manageStudents, new Comparator<Students>() {
+            @Override
+            public int compare(Students o1, Students o2) {
+                return o1.getName().charAt(0) - o2.getName().charAt(0);
+            }
+        });
     }
 
     public void sortStudentsbyGPA() {
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
             public int compare(Students o1, Students o2) {
-                int s1 = o1.getName().charAt(0);
-                int s2 = o2.getName().charAt(0);
+                // char s1 = o1.getName().charAt(0);
+                // char s2 = o2.getName().charAt(0);
                 // return o1.getScore() > o2.getScore() ? -1 : 1;
-                return ((o1.getScore() > o2.getScore())
-                    || ((o1.getScore() == o2.getScore()) && (s1 > s2)) ? -1 : 1);
+                return (((o1.getScore() > o2.getScore())
+                    || (((Double)o1.getScore() == (Double)o2.getScore()) && (o1.getName().charAt(0) > o2.getName().charAt(0)))) ? -1 : 1);
             }
         });
     }
@@ -66,11 +84,26 @@ public class Manages {
     }
 
     public void FindStudentByName(String name) {
+        boolean exits = true;
         for (Students o : manageStudents)
-            if (o.getName() == name) {
+            if (o.getName().equals(name)) {
                 System.out.println(o.showInfor());
+                exits = false;
             }
+        if (exits)
+            System.out.println("Student is not exist");
     }
+    public void FindTeacherByName(String name) {
+        boolean exits = true;
+        for (Teacher o : manageTeachers)
+            if (o.getName().equals(name)) {
+                System.out.println(o.showInfor());
+                exits = false;
+            }
+        if (exits)
+            System.out.println("Teacher is not exist");
+    }
+
     public void ShowAllofTeachers() {
         for (Teacher o : manageTeachers)
             System.out.println(o.showInfor());  

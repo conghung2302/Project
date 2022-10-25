@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+      
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -6,43 +8,167 @@ public class App {
         ArrayList<Teacher> teachers = new ArrayList<Teacher>();
 
         Manages manage = new Manages(students, teachers);
+
+        while (true) {
+            System.out.println("----------Application Manager Students and Teacher-------------");
+            System.out.println("Enter 1: To insert Person ");
+            System.out.println("Enter 2: To show information Person");
+            System.out.println("Enter 3: To search officer by name: ");
+            System.out.println("Enter 4: To Edit Score of Student");
+            System.out.println("Enter 5: To exit:");
+            Scanner scanner = new Scanner(System.in);
+            String line = scanner.nextLine();
+            switch (line) {
+                case "1": {
+                    
+                    System.out.println("Enter a: Insert a Students");
+                    System.out.println("Enter b: Insert a Teacher");
+                    String text = scanner.nextLine();
+                    switch (text) {
+                        case "a": {
+                            manage.addStudent(InpuStudents());
+                            break;
+                        }
+                        case "b": {
+                            manage.addTeacher(InputTeacher());
+                            break;
+                        }
+                            default:
+                            System.out.println("Invalid");
+                        break;
+                    }
+                    break;
+                }
+                case "2": {
+                    System.out.println("Enter a: Show all Students");
+                    System.out.println("Enter b: Show all Teacher");
+
+                    String text = scanner.nextLine();
+                    switch (text) {
+                        case "a": {
+                            manage.sortStudentsbyName();
+                            manage.ShowAllStudents();
+                            break;
+                        }
+                        case "b": {
+                            manage.ShowAllofTeachers();
+                            break;
+                        }
+                        case "c": {
+                            return;
+                        }
+                            default:
+                            System.out.println("Invalid");
+                            break;
+                    }
+                    break;
+                }
+                case "3": {
+                    System.out.println("Enter a: Find Student By Name");
+                    System.out.println("Enter b: Find Teacher by Name");
+                    System.out.println("Enter c: Find High Score");
+                    String text = scanner.nextLine();
+                    switch (text) {
+                        case "a": {
+                            System.out.println("Enter name ");
+                            String name = scanner.nextLine();
+                            manage.FindStudentByName(name);
+                            break;
+                        }
+                        case "b": {
+                            String name = scanner.nextLine();
+                            manage.FindTeacherByName(name);
+                            break;
+                        }
+                        case "c": {
+                            manage.FindHighScore();
+                        }
+                            default:
+                            System.out.println("Invalid");
+                            break;
+   
+                    }
+                    break;
+                }
+                case "4": {
+                    System.out.println("Enter Id ");
+                    String id = scanner.nextLine();
+                    System.out.println("Enter Sore");
+                    Double gpa  = scanner.nextDouble();
+                    manage.EditStudents(id, gpa);
+                    break;
+                }
+                case "5": {
+                    return;
+                }
+                default:
+                    System.out.println("Invalid");
+                continue;
+            }
+
+        }
+    }
+
     
-        Students s1 = new Students("no1","Elon", "NYC", 
-            "08726342", 20, "Boy", 9.0, "IT1");
+
+    private static Teacher InputTeacher() {
+        Scanner scanner = new Scanner(System.in);        
+
+        System.out.print("Enter id: ");
+        String id = scanner.nextLine();
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter phone: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt();
+
+        System.out.print("Enter gender: ");
+        String gender = scanner.nextLine();
+        scanner.nextLine();
+        System.out.print("Enter subject: ");
+        String subject = scanner.nextLine();
+        Teacher teacher = new Teacher(id, name, address, phone, age, gender, subject);
+        System.out.println("------Update Successful------\n");
+        return teacher;
+    }
+
+    static Students InpuStudents() {
+
+        Scanner scanner = new Scanner(System.in);        
+
+        System.out.print("Enter id: ");
+        String id = scanner.nextLine();
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter phone: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Enter gender: ");
+        String gender = scanner.nextLine();
+
+        System.out.print("Enter Score: ");
+        Double Score = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Enter Grade: ");
+        String grade = scanner.nextLine();
+        Students student = new Students(id, name, address, phone, age, gender, Score, grade);           
+        System.out.println("------Update Successful------\n");
+        return student;
         
-        Students s2 = new Students("no2","Lisa", "UK", 
-            "052771873", 19, "Girl", 8.5, "Design1");
-        Students s3 = new Students("no3","Dung", "VN", 
-            "8283821", 19, "Boy", 10.0, "Sing1");
-        Students s4 = new Students("no3","Anna", "Canada", 
-            "199321", 29, "Girl", 9.2, "Bussiness");
-        Students s5 = new Students("no4", "Banana", "Austraulina", 
-            "199321", 24, "Girl", 9.2, "Docter");
-
-        manage.addStudent(s1);
-        manage.addStudent(s2);
-        manage.addStudent(s3);
-        manage.addStudent(s4);
-        manage.addStudent(s5);
-
-        Teacher t1 = new Teacher("T1", "Tesla", "USA", "123", 87, "Boy", "Physics");
-        manage.addTeacher(t1);
-        Teacher t2 = new Teacher("T1", "Einstein", "USA", "345", 87, "Boy", "Physics");
-        manage.addTeacher(t2);
-        Teacher t3 = new Teacher("T1", "Robert", "USA", "567", 87, "Boy", "Physics");
-        manage.addTeacher(t3);
-        Teacher t4 = new Teacher("T1", "DaVinCi", "USA", "789", 87, "Boy", "Physics");
-        manage.addTeacher(t4);
-
-
-        // manage.sortStudentsbyGPA();
-        // manage.ShowAllofTeachers();
-        // manage.FindHighScore();
-        // manage.FindStudentByName("Anna");
-        
-        manage.ShowAllofStudents();
-        // manage.ShowAllofTeachers();
-
-        // Hello Hung
     }
 }
