@@ -33,6 +33,7 @@ public class Students extends Persons{
     
     public String showInfor() {
         return "Student {" +
+                "ID = '" + getId() + '\'' +
                 "Name = '" + getName() + '\'' +
                 ", Age = '" + getAge() + '\'' +
                 ", Gender = '" + getGender() + '\'' +

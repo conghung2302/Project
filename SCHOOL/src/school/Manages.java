@@ -13,7 +13,7 @@ public class Manages {
     public Manages(ArrayList<Students> students, ArrayList<Teacher> teachers) {
         this.manageStudents = students;
         this.manageTeachers = teachers;
-    }
+    }                               
 
     public void addStudent(Students students) {
         Scores sc = new Scores();
@@ -50,53 +50,25 @@ public class Manages {
         });
     }
 
-    public void EditScoreOfStudents(String id, String subject) {
-        boolean exist = true;
-        subject.toUpperCase();
-        for (Students o : manageStudents) {
-            if (o.getId().equals(id)) {
-                
-                if (subject.equals("MATHS")) {
-                    System.out.println("Current score is " + o.getScores().getMath());
-                    System.out.println("Enter new Score " );
-                    Double newScore = scanner.nextDouble();
-                    o.scores.setMath(newScore);
-                }
-
-                if (subject.equals("ENGLISH")) {
-                    System.out.println("Current score is " + o.getScores().getEnglish());
-                    System.out.println("Enter new Score " );
-                    Double newScore = scanner.nextDouble();
-                    o.scores.setEnglish(newScore);
-                }
-
-                if (subject.equals("PHYSICS")) {
-                    System.out.println("Current score is " + o.getScores().getEnglish());
-                    System.out.println("Enter new Score " );
-                    Double newScore = scanner.nextDouble();
-                    o.scores.setEnglish(newScore);
-                }
-
-                if (subject.equals("SCIENCES")) {
-                    System.out.println("Current score is " + o.getScores().getSciences());
-                    System.out.println("Enter new Score " );
-                    Double newScore = scanner.nextDouble();
-                    o.scores.setEnglish(newScore);
-                }
-                if (subject.equals("MUSIC")) {
-                    System.out.println("Current score is " + o.getScores().getMusic());
-                    System.out.println("Enter new Score ");
-                    Double newScore = scanner.nextDouble();
-                    o.scores.setEnglish(newScore);
-                }
-
-                exist = false;
-            }
+    public void EditScoreOfStudents(Students student, String subject, Double newscore) {
+        subject = subject.toUpperCase();
+        if (subject.equals("MATHS")) {
+            System.out.println("hahahahah");
+            student.scores.setMath(newscore);
         }
-        if (exist == false)
-            System.out.println("------Update Successful------\n");
-        else 
-            System.out.println("------Not exist this name------\n");
+        if (subject.equals("ENGLISH")) {
+            System.out.println("hahahahah");
+            student.scores.setEnglish(newscore);
+        }
+        if (subject.equals("PHYSICS")) {
+            student.scores.setPhysics(newscore);
+        }
+        if (subject.equals("MUSIC")) {
+            student.scores.setMusic(newscore);
+        }
+        if (subject.equals("SCIENCES")) {
+            student.scores.setSciences(newscore);
+        }
     }
 
     public void sortTeacherbyName() {

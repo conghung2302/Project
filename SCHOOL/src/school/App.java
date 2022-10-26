@@ -2,33 +2,40 @@ package school;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 import Admin.Scores;
-      
+
+
 
 public class App {
-    public static void main(String[] args) throws Exception {
+
+        public static Manages manage;
+        public static Scanner scanner;
+        public static void main(String[] args) throws Exception {
         ArrayList<Students> students = new ArrayList<Students>();
         ArrayList<Teacher> teachers = new ArrayList<Teacher>();
 
-        Manages manage = new Manages(students, teachers);
 
-        
+        // String s = "123.423";
+        // Double ss = Double.parseDouble(s);
+        // System.out.println(ss);
+        manage = new Manages(students, teachers);
         while (true) {
             System.out.println("-----------Application Manager Students and Teacher-----------");
-            System.out.println("Enter 1: Insert Person ");
-            System.out.println("Enter 2: Show information Person");
-            System.out.println("Enter 3: Find persions by name: ");
-            System.out.println("Enter 4: Add Score for Student");
-            System.out.println("Enter 5: Edit score");
-            System.out.println("Enter 6: Show All Students in Grade");
-            System.out.println("Enter 7: Exit:");
-            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter 1:   Insert Person ");
+            System.out.println("Enter 2:   Show information Person");
+            System.out.println("Enter 3:   Find persions by name: ");
+            System.out.println("Enter 4:   Add Score for Student");
+            System.out.println("Enter 5:   Edit score");
+            System.out.println("Enter 6:   Show All Students in Grade");
+            System.out.println("Enter 7:   Exit:");
+            scanner = new Scanner(System.in);
             String line = scanner.nextLine();
             switch (line) {
                 case "1": {
                     System.out.println("Enter a: Insert a Students");
                     System.out.println("Enter b: Insert a Teacher");
+                    System.out.println("Enter c: Add many Students");
+
                     String text = scanner.nextLine();
                     switch (text) {
                         case "a": {
@@ -39,12 +46,23 @@ public class App {
                             manage.addTeacher(InputTeacher());
                             break;
                         }
+                        case "c": {
+                            System.out.println("Enter number of students");
+                            String _number = scanner.nextLine();
+                            int number = Integer.parseInt(_number);
+                            for (int i = 1; i <= number; i++) {
+                                System.out.println("Enter " + i + "th Students ");
+                                manage.addStudent(InpuStudents());
+                            }
+                            break;
+                        }
                             default:
                             System.out.println("Invalid");
                         break;
                     }
                     break;
                 }
+                
                 case "2": {
                     System.out.println("Enter a: Show all Students");
                     System.out.println("Enter b: Show all Teacher");
@@ -117,13 +135,14 @@ public class App {
                     String _id = scanner.nextLine();
                     System.out.println("Enter subject ");
                     String _subject = scanner.nextLine();
-                    manage.EditScoreOfStudents(_id, _subject);
+                    _EditScoreOfStudents(_id, _subject);   
                     break;
                 }
                 case "6": {
                     System.out.println("Enter grade: ");
                     String grade = scanner.nextLine();
                     manage.ShowScore(grade);
+                    break;
                 }
                 case "7": {
                     return;
@@ -136,6 +155,21 @@ public class App {
     }
 
     
+    public static void _EditScoreOfStudents(String id, String subject) {
+        boolean exist = true;
+        for (Students o : manage.manageStudents) {
+            if (o.getId().equals(id)) {
+                System.out.println("Enter newscore: ");
+                Double newscore = scanner.nextDouble();
+                manage.EditScoreOfStudents(o, subject, newscore);
+                exist = false;
+            }
+        }
+        if (exist == false)
+            System.out.println("------Update Successful------\n");
+        else 
+            System.out.println("------Not exist this name------\n");
+    }
 
     public static Teacher InputTeacher() {
         Scanner scanner = new Scanner(System.in);        
@@ -171,6 +205,10 @@ public class App {
 
         System.out.print("Enter id: ");
         String id = scanner.nextLine();
+        // for (Students o : manage.manageStudents)
+        //     if (o.getId().equals(id)) {
+        //         System.out.println("Error id, Enter again");
+        //     }
 
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
