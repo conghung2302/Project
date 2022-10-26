@@ -1,7 +1,12 @@
+package school;
 import java.util.ArrayList;
+
+import Admin.*;
+
 import java.util.*;
 
 public class Manages {
+    Scanner scanner;
     ArrayList <Students> manageStudents;
     public ArrayList <Teacher> manageTeachers;
 
@@ -16,7 +21,9 @@ public class Manages {
     public void addTeacher(Teacher teacher) {
         this.manageTeachers.add(teacher);
     }
-    
+    public void ShowScore () {
+        
+    }
     
 
     public void ShowAllStudents() {
@@ -34,12 +41,46 @@ public class Manages {
         });
     }
 
-    public void EditStudents(String id, Double gpa) {
+    public void EditScoreOfStudents(String id, String subject) {
         boolean exist = true;
+        subject.toUpperCase();
         for (Students o : manageStudents) {
             if (o.getId().equals(id)) {
-                System.out.println("helloooooo");
-                o.setScore(gpa);
+                
+                if (subject.equals("MATHS")) {
+                    System.out.println("Current score is " + o.getScores().getMath());
+                    System.out.println("Enter new Score " );
+                    Double newScore = scanner.nextDouble();
+                    o.scores.setMath(newScore);
+                }
+
+                if (subject.equals("ENGLISH")) {
+                    System.out.println("Current score is " + o.getScores().getEnglish());
+                    System.out.println("Enter new Score " );
+                    Double newScore = scanner.nextDouble();
+                    o.scores.setEnglish(newScore);
+                }
+
+                if (subject.equals("PHYSICS")) {
+                    System.out.println("Current score is " + o.getScores().getEnglish());
+                    System.out.println("Enter new Score " );
+                    Double newScore = scanner.nextDouble();
+                    o.scores.setEnglish(newScore);
+                }
+
+                if (subject.equals("SCIENCES")) {
+                    System.out.println("Current score is " + o.getScores().getSciences());
+                    System.out.println("Enter new Score " );
+                    Double newScore = scanner.nextDouble();
+                    o.scores.setEnglish(newScore);
+                }
+                if (subject.equals("MUSIC")) {
+                    System.out.println("Current score is " + o.getScores().getMusic());
+                    System.out.println("Enter new Score ");
+                    Double newScore = scanner.nextDouble();
+                    o.scores.setEnglish(newScore);
+                }
+
                 exist = false;
             }
         }
@@ -62,9 +103,9 @@ public class Manages {
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
             public int compare(Students o1, Students o2) {
-                if (o1.getScore() == o2.getScore())
+                if (o1.getScores().getAverageofscore() == o2.getScores().getAverageofscore())
                     return o1.getName().charAt(0) - o2.getName().charAt(0) ;
-                return (o1.getScore() > o2.getScore() ? -1 : 1);
+                return (o1.getScores().getAverageofscore() > o2.getScores().getAverageofscore() ? -1 : 1);
             }
         });
     }
@@ -74,8 +115,8 @@ public class Manages {
         Double MAX = 0.0;
         
         for (Students o : manageStudents)
-            if (o.getScore() > MAX) {
-                MAX = o.getScore();
+            if (o.getScores().getAverageofscore() > MAX) {
+                MAX = o.getScores().getAverageofscore();
                 students = o;
             }
         System.out.println(students.showInfor());
@@ -105,5 +146,12 @@ public class Manages {
     public void ShowAllofTeachers() {
         for (Teacher o : manageTeachers)
             System.out.println(o.showInfor());  
+    }
+
+    public void AddScoreStudents(String id, Scores gpa) {
+        for (Students o : manageStudents)
+            if (o.getId().equals(id)) {
+                o.setScores(gpa);
+            }
     }
 }

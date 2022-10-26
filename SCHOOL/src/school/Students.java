@@ -1,20 +1,23 @@
+package school;
+import Admin.*;
+
 public class Students extends Persions{
-    public Double Score;
+
     public String grade;
+    public Scores scores;
     
     public Students(String id, String name, String address, String phone, 
             int age, String gender, Double Score, String grade) {
         super(id, name, address, phone, age, gender);
-        this.Score = Score;
         this.grade = grade;
     }
 
-    public Double getScore() {
-        return Score;
+    public Scores getScores() {
+        return scores;
     }
 
-    public void setScore(Double Score) {
-        this.Score = Score;
+    public void setScores(Scores scores) {
+        this.scores = scores;
     }
 
     public String getGrade() {
@@ -39,7 +42,7 @@ public class Students extends Persions{
                 ", Gender = '" + getGender() + '\'' +
                 ", Address = '" + getAddress() + '\'' +
                 ", Phone = '" + getPhone() + '\'' +
-                ", Score = '" + getScore() + '\'' +
+                ", Score = '" + getScores().getAverageofscore() + '\'' +
                 '}';
     }
 }

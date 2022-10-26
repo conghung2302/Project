@@ -1,5 +1,8 @@
+package school;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Admin.Scores;
       
 
 public class App {
@@ -14,13 +17,13 @@ public class App {
             System.out.println("Enter 1: To insert Person ");
             System.out.println("Enter 2: To show information Person");
             System.out.println("Enter 3: To search officer by name: ");
-            System.out.println("Enter 4: To Edit Score of Student");
-            System.out.println("Enter 5: To exit:");
+            System.out.println("Enter 4: To add Score of Student");
+            System.out.println("Enter 5: Edit score");
+            System.out.println("Enter 6: To exit:");
             Scanner scanner = new Scanner(System.in);
             String line = scanner.nextLine();
             switch (line) {
                 case "1": {
-                    
                     System.out.println("Enter a: Insert a Students");
                     System.out.println("Enter b: Insert a Teacher");
                     String text = scanner.nextLine();
@@ -93,12 +96,29 @@ public class App {
                 case "4": {
                     System.out.println("Enter Id ");
                     String id = scanner.nextLine();
-                    System.out.println("Enter Sore");
-                    Double gpa  = scanner.nextDouble();
-                    manage.EditStudents(id, gpa);
+                    System.out.println("Enter Math");
+                    Double math = scanner.nextDouble();
+                    System.out.println("Enter English");
+                    Double english = scanner.nextDouble();
+                    System.out.println("Enter Music");
+                    Double music = scanner.nextDouble();
+                    System.out.println("Enter Science");
+                    Double science = scanner.nextDouble();
+                    System.out.println("Enter Physics");
+                    Double physics = scanner.nextDouble();
+
+                    Scores gpa = new Scores(math, english, physics, music, science, physics);
+                    manage.AddScoreStudents(id, gpa);
                     break;
                 }
                 case "5": {
+                    System.out.println("Enter id ");
+                    String _id = scanner.nextLine();
+                    System.out.println("Enter subject ");
+                    String _subject = scanner.nextLine();
+                    manage.EditScoreOfStudents(_id, _subject);
+                }
+                case "6": {
                     return;
                 }
                 default:

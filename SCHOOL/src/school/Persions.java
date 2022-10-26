@@ -1,3 +1,7 @@
+package school;
+
+import Admin.Scores;
+
 public abstract class Persions {
     public String name;
     public String id;
@@ -6,6 +10,7 @@ public abstract class Persions {
     public String phone;
     public int age;
     public String gender;
+
 
     public Persions(String id, String name, String address, String phone, int age, String gender) {
         this.id = id;

@@ -1,3 +1,4 @@
+package school;
 public class Teacher extends Persions{
     public String subject;
     
