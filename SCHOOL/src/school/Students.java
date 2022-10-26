@@ -1,7 +1,7 @@
 package school;
 import Admin.*;
 
-public class Students extends Persions{
+public class Students extends Persons{
 
     public String grade;
     public Scores scores;
@@ -30,7 +30,7 @@ public class Students extends Persions{
 
 
 
-    @Override
+    
     public String showInfor() {
         return "Student {" +
                 "Name = '" + getName() + '\'' +
@@ -38,7 +38,7 @@ public class Students extends Persions{
                 ", Gender = '" + getGender() + '\'' +
                 ", Address = '" + getAddress() + '\'' +
                 ", Phone = '" + getPhone() + '\'' +
-                // ", Score = '" + getScores().getAverageofscore() + '\'' +
+                ", Score = '" + scores.getAverageofscore() + '\'' +
                 '}';
     }
 }

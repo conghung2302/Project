@@ -8,7 +8,7 @@ import java.util.*;
 public class Manages {
     Scanner scanner;
     ArrayList <Students> manageStudents;
-    public ArrayList <Teacher> manageTeachers;
+    ArrayList <Teacher> manageTeachers;
 
     public Manages(ArrayList<Students> students, ArrayList<Teacher> teachers) {
         this.manageStudents = students;
@@ -16,17 +16,26 @@ public class Manages {
     }
 
     public void addStudent(Students students) {
+        Scores sc = new Scores();
+        students.scores = sc;
         this.manageStudents.add(students);
     }
     public void addTeacher(Teacher teacher) {
         this.manageTeachers.add(teacher);
     }
-    public void ShowScore () {
-        
+
+    public void ShowScore (String grade) {
+        for (Students o :manageStudents)
+            if (o.getGrade().equals(grade)) {
+                System.out.println("{" + o.getGrade() + " " + o.getName() + " " + o.scores.ShowScore());
+            }
+                
     }
     
 
     public void ShowAllStudents() {
+        
+        // sortStudentsbyName();
         sortStudentsbyGPA();
         for (Students o : manageStudents)
             System.out.println(o.showInfor());
@@ -90,7 +99,7 @@ public class Manages {
             System.out.println("------Not exist this name------\n");
     }
 
-    public void sortTeacherby() {
+    public void sortTeacherbyName() {
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
             public int compare(Students o1, Students o2) {
@@ -100,6 +109,7 @@ public class Manages {
     }
 
     public void sortStudentsbyGPA() {
+
         Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
             public int compare(Students o1, Students o2) {

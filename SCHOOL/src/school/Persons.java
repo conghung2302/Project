@@ -1,6 +1,6 @@
 package school;
 
-public abstract class Persions {
+public abstract class Persons {
     public String name;
     public String id;
    
@@ -10,7 +10,7 @@ public abstract class Persions {
     public String gender;
 
 
-    public Persions(String id, String name, String address, String phone, int age, String gender) {
+    public Persons(String id, String name, String address, String phone, int age, String gender) {
         this.id = id;
         this.name = name;
         this.address = address;

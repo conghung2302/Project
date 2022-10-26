@@ -1,5 +1,5 @@
 package school;
-public class Teacher extends Persions{
+public class Teacher extends Persons{
     public String subject;
     
     public Teacher(String id, String name, String address, 

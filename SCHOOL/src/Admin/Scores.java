@@ -1,7 +1,7 @@
 package Admin;
 
 public class Scores {
-    public Double math;
+    public Double math ;
     public Double english;
     public Double physics;
     public Double music;
@@ -9,13 +9,22 @@ public class Scores {
 
     public Double averageofscore;
 
-    public Scores(Double math, Double english, Double physics, Double music, Double sciences, Double averageofscore) {
+    public Scores(){
+        this.math = 0.0;
+        this.english = 0.0;
+        this.physics = 0.0;
+        this.music= 0.0;
+        this.sciences = 0.0;
+        this.averageofscore = 0.0;
+    }
+    
+    public Scores(Double math, Double english, Double physics, Double music, Double sciences) {
         this.math = math;
         this.english = english;
         this.physics = physics;
         this.music = music;
         this.sciences = sciences;
-        this.averageofscore = averageofscore;
+        this.averageofscore = (getEnglish() + getMath() + getMusic() + getMusic() + getSciences()) / 6;
     }
 
     public Double getMath() {
@@ -62,8 +71,15 @@ public class Scores {
         return averageofscore;
     }
 
-    public void setAverageofscore(Double averageofscore) {
-        
-        this.averageofscore = (getEnglish() + getMath() + getMusic() + getMusic() + getSciences()) / 6;
-    }
+    public String ShowScore() {
+        return 
+            "Maths = '" + getMath() + '\'' +
+            ", English = '" + getEnglish() + '\'' +
+            ", Music = '" + getMusic() + '\'' +
+            ", Sciences = '" + getSciences() + '\'' +
+            ", Physics = '" + getPhysics() + '\'' +
+            ", Average = '" + getAverageofscore() + '\'' +
+            '}';
+    } 
+
 }

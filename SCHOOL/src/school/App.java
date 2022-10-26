@@ -13,14 +13,16 @@ public class App {
 
         Manages manage = new Manages(students, teachers);
 
+        
         while (true) {
             System.out.println("-----------Application Manager Students and Teacher-----------");
-            System.out.println("Enter 1: To insert Person ");
-            System.out.println("Enter 2: To show information Person");
-            System.out.println("Enter 3: To search officer by name: ");
-            System.out.println("Enter 4: To add Score for Student");
+            System.out.println("Enter 1: Insert Person ");
+            System.out.println("Enter 2: Show information Person");
+            System.out.println("Enter 3: Find persions by name: ");
+            System.out.println("Enter 4: Add Score for Student");
             System.out.println("Enter 5: Edit score");
-            System.out.println("Enter 6: To exit:");
+            System.out.println("Enter 6: Show All Students in Grade");
+            System.out.println("Enter 7: Exit:");
             Scanner scanner = new Scanner(System.in);
             String line = scanner.nextLine();
             switch (line) {
@@ -89,7 +91,6 @@ public class App {
                             default:
                             System.out.println("Invalid");
                             break;
-   
                     }
                     break;
                 }
@@ -107,7 +108,7 @@ public class App {
                     System.out.println("Enter Physics");
                     Double physics = scanner.nextDouble();
 
-                    Scores gpa = new Scores(math, english, physics, music, science, physics);
+                    Scores gpa = new Scores(math, english, physics, music, science);
                     manage.AddScoreStudents(id, gpa);
                     break;
                 }
@@ -117,8 +118,14 @@ public class App {
                     System.out.println("Enter subject ");
                     String _subject = scanner.nextLine();
                     manage.EditScoreOfStudents(_id, _subject);
+                    break;
                 }
                 case "6": {
+                    System.out.println("Enter grade: ");
+                    String grade = scanner.nextLine();
+                    manage.ShowScore(grade);
+                }
+                case "7": {
                     return;
                 }
                 default:
@@ -130,7 +137,7 @@ public class App {
 
     
 
-    private static Teacher InputTeacher() {
+    public static Teacher InputTeacher() {
         Scanner scanner = new Scanner(System.in);        
 
         System.out.print("Enter id: ");
@@ -158,7 +165,7 @@ public class App {
         return teacher;
     }
 
-    static Students InpuStudents() {
+    public static Students InpuStudents() {
 
         Scanner scanner = new Scanner(System.in);        
 
