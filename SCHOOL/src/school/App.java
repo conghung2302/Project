@@ -2,6 +2,7 @@ package school;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 import Admin.Scores;
       
 
@@ -13,11 +14,11 @@ public class App {
         Manages manage = new Manages(students, teachers);
 
         while (true) {
-            System.out.println("----------Application Manager Students and Teacher-------------");
+            System.out.println("-----------Application Manager Students and Teacher-----------");
             System.out.println("Enter 1: To insert Person ");
             System.out.println("Enter 2: To show information Person");
             System.out.println("Enter 3: To search officer by name: ");
-            System.out.println("Enter 4: To add Score of Student");
+            System.out.println("Enter 4: To add Score for Student");
             System.out.println("Enter 5: Edit score");
             System.out.println("Enter 6: To exit:");
             Scanner scanner = new Scanner(System.in);
@@ -49,7 +50,6 @@ public class App {
                     String text = scanner.nextLine();
                     switch (text) {
                         case "a": {
-                            manage.sortStudentsbyName();
                             manage.ShowAllStudents();
                             break;
                         }
@@ -125,7 +125,6 @@ public class App {
                     System.out.println("Invalid");
                 continue;
             }
-
         }
     }
 
@@ -181,12 +180,9 @@ public class App {
         System.out.print("Enter gender: ");
         String gender = scanner.nextLine();
 
-        System.out.print("Enter Score: ");
-        Double Score = scanner.nextDouble();
-        scanner.nextLine();
         System.out.print("Enter Grade: ");
         String grade = scanner.nextLine();
-        Students student = new Students(id, name, address, phone, age, gender, Score, grade);           
+        Students student = new Students(id, name, address, phone, age, gender, grade);           
         System.out.println("------Update Successful------\n");
         return student;
         

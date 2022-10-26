@@ -1,7 +1,5 @@
 package school;
 
-import Admin.Scores;
-
 public abstract class Persions {
     public String name;
     public String id;

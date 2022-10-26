@@ -7,7 +7,7 @@ public class Students extends Persions{
     public Scores scores;
     
     public Students(String id, String name, String address, String phone, 
-            int age, String gender, Double Score, String grade) {
+            int age, String gender, String grade) {
         super(id, name, address, phone, age, gender);
         this.grade = grade;
     }
@@ -28,11 +28,7 @@ public class Students extends Persions{
         this.grade = grade;
     }
 
-    // @Override
-    // public String showInfor() {
-    //     return getName() + " " + getAge() + " " + getGender() + " " + getAddress() +" " + getPhone() + " " + getScore() + "\n" +
-    //         "----------------------------------------------------";
-    // } 
+
 
     @Override
     public String showInfor() {
@@ -42,7 +38,7 @@ public class Students extends Persions{
                 ", Gender = '" + getGender() + '\'' +
                 ", Address = '" + getAddress() + '\'' +
                 ", Phone = '" + getPhone() + '\'' +
-                ", Score = '" + getScores().getAverageofscore() + '\'' +
+                // ", Score = '" + getScores().getAverageofscore() + '\'' +
                 '}';
     }
 }
