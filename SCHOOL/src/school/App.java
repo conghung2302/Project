@@ -57,7 +57,7 @@ public class App {
                             break;
                         }
                             default:
-                            System.out.println("Invalid");
+                            System.out.println("Wrong Input");
                         break;
                     }
                     break;
@@ -70,11 +70,17 @@ public class App {
                     String text = scanner.nextLine();
                     switch (text) {
                         case "a": {
-                            manage.ShowAllStudents();
+                            if (manage.manageStudents.size() == 0)
+                                System.out.println("Empty");  
+                            else  
+                                manage.ShowAllStudents();
                             break;
                         }
                         case "b": {
-                            manage.ShowAllofTeachers();
+                            if (manage.manageTeachers.size() == 0)
+                                System.out.println("Empty");  
+                            else 
+                                manage.ShowAllofTeachers();
                             break;
                         }
                         case "c": {
@@ -93,21 +99,35 @@ public class App {
                     String text = scanner.nextLine();
                     switch (text) {
                         case "a": {
-                            System.out.println("Enter name ");
-                            String name = scanner.nextLine();
-                            manage.FindStudentByName(name);
+                            if (manage.manageStudents.size() == 0)
+                                System.out.println("Empty");  
+                            else {
+                                System.out.println("Enter name ");
+                                String name = scanner.nextLine();
+                                manage.FindStudentByName(name);
+                            }
+                           
                             break;
                         }
                         case "b": {
-                            String name = scanner.nextLine();
-                            manage.FindTeacherByName(name);
+                            if (manage.manageTeachers.size() == 0)
+                                System.out.println("Empty");  
+                            else {
+                                String name = scanner.nextLine();
+                                manage.FindTeacherByName(name);
+                            }
                             break;
                         }
                         case "c": {
-                            manage.FindHighScore();
+                            if (manage.manageStudents.size() == 0)
+                                System.out.println("Empty");  
+                            else 
+                                manage.FindHighScore();
+                                break;
                         }
+
                             default:
-                            System.out.println("Invalid");
+                            System.out.println("Wrong Input");
                             break;
                     }
                     break;
@@ -131,24 +151,34 @@ public class App {
                     break;
                 }
                 case "5": {
-                    System.out.println("Enter id ");
-                    String _id = scanner.nextLine();
-                    System.out.println("Enter subject ");
-                    String _subject = scanner.nextLine();
-                    _EditScoreOfStudents(_id, _subject);   
+                    if (manage.manageStudents.size() == 0)
+                        System.out.println("Empty");  
+                    else {
+                        System.out.println("Enter id ");
+                        String _id = scanner.nextLine();
+                        System.out.println("Enter subject ");
+                        String _subject = scanner.nextLine();
+                        _EditScoreOfStudents(_id, _subject);   
+                    }
                     break;
                 }
                 case "6": {
                     System.out.println("Enter grade: ");
                     String grade = scanner.nextLine();
-                    manage.ShowScore(grade);
+                    
+                    if (manage.manageStudents.size() == 0)
+                        System.out.println("Empty");  
+                    else 
+                        manage.ShowScore(grade); 
+                        
+                        
                     break;
                 }
                 case "7": {
                     return;
                 }
                 default:
-                    System.out.println("Invalid");
+                    System.out.println("Wrong Input");
                 continue;
             }
         }
