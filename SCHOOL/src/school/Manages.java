@@ -53,11 +53,9 @@ public class Manages {
     public void EditScoreOfStudents(Students student, String subject, Double newscore) {
         subject = subject.toUpperCase();
         if (subject.equals("MATHS")) {
-            System.out.println("hahahahah");
             student.scores.setMath(newscore);
         }
         if (subject.equals("ENGLISH")) {
-            System.out.println("hahahahah");
             student.scores.setEnglish(newscore);
         }
         if (subject.equals("PHYSICS")) {
