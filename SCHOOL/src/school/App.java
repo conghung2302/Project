@@ -14,10 +14,6 @@ public class App {
         ArrayList<Students> students = new ArrayList<Students>();
         ArrayList<Teacher> teachers = new ArrayList<Teacher>();
 
-
-        // String s = "123.423";
-        // Double ss = Double.parseDouble(s);
-        // System.out.println(ss);
         manage = new Manages(students, teachers);
         while (true) {
             System.out.println("-----------Application Manager Students and Teacher-----------");
