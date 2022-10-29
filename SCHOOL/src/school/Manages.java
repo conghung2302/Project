@@ -1,137 +1,185 @@
-package school;
-import java.util.ArrayList;
-
+package School;
 import Admin.*;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Manages {
     Scanner scanner;
-    ArrayList <Students> manageStudents;
-    ArrayList <Teacher> manageTeachers;
 
-    public Manages(ArrayList<Students> students, ArrayList<Teacher> teachers) {
-        this.manageStudents = students;
-        this.manageTeachers = teachers;
-    }                               
+    Hashtable<String, Students> _ManageStudent;
+    Hashtable<String, Teachers> _ManageTeacher;
 
-    public void addStudent(Students students) {
+
+    public Manages(Hashtable<String, Students> _ManageStudent, Hashtable<String, Teachers> _ManageTeachers) {
+        this._ManageStudent = _ManageStudent;
+        this._ManageTeacher = _ManageTeachers;
+    }
+
+
+    public void addStudent(Students _students) {
         Scores sc = new Scores();
-        students.scores = sc;
-        this.manageStudents.add(students);
-    }
-    public void addTeacher(Teacher teacher) {
-        this.manageTeachers.add(teacher);
+        _students.scores = sc;
+        this._ManageStudent.put(_students.getId(), _students);
     }
 
-    public void ShowScore (String grade) {
-        for (Students o :manageStudents)
-            if (o.getGrade().equals(grade)) {
-                System.out.println("{" + o.getGrade() + " " + o.getName() + " " + o.scores.ShowScore());
-            }
-                
+    public void AddScoreForStudents(String id, Scores gpa) {
+        _ManageStudent.get(id).scores = gpa;
+    }
+
+    public void addTeacher(Teachers teacher) {
+        if (!this._ManageTeacher.containsKey(teacher.getId()))
+            this._ManageTeacher.put(teacher.getId(), teacher);
+    }
+
+    public void ShowScoreGrade (String grade) {
+        Set<String> keySet = _ManageStudent.keySet();
+
+        sortStudentsbyGPA();
+        for (String key : keySet) {
+            if (_ManageStudent.containsKey(key))
+            System.out.println(_ManageStudent.get(key).scores.ShowScore());
+        }      
     }
     
 
     public void ShowAllStudents() {
-        
-        // sortStudentsbyName();
         sortStudentsbyGPA();
-        for (Students o : manageStudents)
-            System.out.println(o.showInfor());
+        Set<String> keySet = _ManageStudent.keySet();
+
+        for (String key : keySet) {
+            if (_ManageStudent.containsKey(key))
+            System.out.println(_ManageStudent.get(key).showInfor());
+        }
     }
 
-    public void sortStudentsbyName() {
-        Collections.sort(manageStudents, new Comparator<Students>() {
+    public void sortStudentsbyNameABC() {
+        Set<Entry<String, Students>> entry = _ManageStudent.entrySet();
+        ArrayList<Entry<String, Students>> list = new ArrayList<>(entry);
+
+        Collections.sort(list, new Comparator<Entry<String, Students>>() {
+
             @Override
-            public int compare(Students o1, Students o2) {
-                return o1.getName().charAt(0) - o2.getName().charAt(0);
+            public int compare(Entry<String, Students> o1, Entry<String, Students> o2) {
+                return o1.getValue().getName().charAt(0) - (o2.getValue().getName().charAt(0));
             }
+            
         });
     }
 
-    public void EditScoreOfStudents(Students student, String subject, Double newscore) {
+    public void sortStudentsbyName() {
+        Set<Entry<String, Students>> entry = _ManageStudent.entrySet();
+        ArrayList<Entry<String, Students >> list = new ArrayList<>(entry);
+
+        Collections.sort(list, new Comparator<Entry<String, Students>>() {
+
+            @Override
+            public int compare(Entry<String, Students> o1, Entry<String, Students> o2) {
+                return o1.getValue().getName().compareTo(o2.getValue().getName());
+            }        
+        });
+    }
+
+    public void sortStudentsbyGPA() { 
+        
+        Set<Entry<String, Students>> entry = _ManageStudent.entrySet();
+        ArrayList<Entry<String, Students >> list = new ArrayList<>(entry);
+
+        Collections.sort(list, new Comparator<Entry<String, Students>>() {
+
+            @Override
+            public int compare(Entry<String, Students> o1, Entry<String, Students> o2) {
+                if (o1.getValue().scores.getAverageofscore() == o2.getValue().scores.getAverageofscore())
+                    return o1.getValue().getName().charAt(0) - o2.getValue().getName().charAt(0);
+                
+                return (o1.getValue().scores.getAverageofscore() > o2.getValue().scores.getAverageofscore()) ? 1 : -1;
+            }  
+        });
+    }
+
+    
+
+    public void EditScoreOfStudents(String id, String subject, Double newscore) {
         subject = subject.toUpperCase();
         if (subject.equals("MATHS")) {
-            student.scores.setMath(newscore);
+            _ManageStudent.get(id).scores.setMath(newscore);
         }
         if (subject.equals("ENGLISH")) {
-            student.scores.setEnglish(newscore);
+            _ManageStudent.get(id).scores.setEnglish(newscore);
         }
         if (subject.equals("PHYSICS")) {
-            student.scores.setPhysics(newscore);
+            _ManageStudent.get(id).scores.setPhysics(newscore);
         }
         if (subject.equals("MUSIC")) {
-            student.scores.setMusic(newscore);
+            _ManageStudent.get(id).scores.setMusic(newscore);
         }
         if (subject.equals("SCIENCES")) {
-            student.scores.setSciences(newscore);
+            _ManageStudent.get(id).scores.setSciences(newscore);
         }
     }
 
     public void sortTeacherbyName() {
-        Collections.sort(manageStudents, new Comparator<Students>() {
-            @Override
-            public int compare(Students o1, Students o2) {
-                return o1.getName().charAt(0) - o2.getName().charAt(0);
-            }
-        });
-    }
+        Set<Entry<String, Teachers>> entry = _ManageTeacher.entrySet();
+        ArrayList<Entry<String, Teachers >> list = new ArrayList<>(entry);
 
-    public void sortStudentsbyGPA() {
+        Collections.sort(list, new Comparator<Entry<String, Teachers>>() {
 
-        Collections.sort(manageStudents, new Comparator<Students>() {
             @Override
-            public int compare(Students o1, Students o2) {
-                if (o1.getScores().getAverageofscore() == o2.getScores().getAverageofscore())
-                    return o1.getName().charAt(0) - o2.getName().charAt(0) ;
-                return (o1.getScores().getAverageofscore() > o2.getScores().getAverageofscore() ? -1 : 1);
-            }
+            public int compare(Entry<String, Teachers> o1, Entry<String, Teachers> o2) {
+                return o1.getValue().getName().charAt(0) - o2.getValue().getName().charAt(0);
+            }        
         });
     }
     
-    Students students;
+
+    
     public void FindHighScore() {
         Double MAX = 0.0;
-        
-        for (Students o : manageStudents)
-            if (o.getScores().getAverageofscore() > MAX) {
-                MAX = o.getScores().getAverageofscore();
-                students = o;
+        String _key = "";
+
+        Set<String> keySet = _ManageStudent.keySet();
+
+        for (String key : keySet) {
+            if (_ManageStudent.get(key).scores.averageofscore > MAX) {
+                MAX = _ManageStudent.get(key).scores.averageofscore;
+                _key = key;
             }
-        System.out.println(students.showInfor());
+        }
+        System.out.println(_ManageStudent.get(_key).showInfor());
     }
 
-    public void FindStudentByName(String name) {
-        boolean exits = true;
-        for (Students o : manageStudents)
-            if (o.getName().equals(name)) {
-                System.out.println(o.showInfor());
-                exits = false;
-            }
-        if (exits)
-            System.out.println("Student is not exist");
-    }
-    public void FindTeacherByName(String name) {
-        boolean exits = true;
-        for (Teacher o : manageTeachers)
-            if (o.getName().equals(name)) {
-                System.out.println(o.showInfor());
-                exits = false;
-            }
-        if (exits)
-            System.out.println("Teacher is not exist");
+    public void FindStudentById(String id) {
+        System.out.println(_ManageStudent.get(id).showInfor());
     }
 
+    
+    public void FindTeacherById(String id) {
+        System.out.println(_ManageTeacher.get(id).showInfor());
+    }
+                 
     public void ShowAllofTeachers() {
-        for (Teacher o : manageTeachers)
-            System.out.println(o.showInfor());  
+        Set<String> keySet = _ManageTeacher.keySet();
+        
+        for (String key : keySet) {
+            if (_ManageTeacher.containsKey(key))
+                System.out.println(_ManageTeacher.get(key).showInfor());
+        }
     }
+    public void CheckExistObject(String key) {
+        if (_ManageStudent.containsKey(key))
+            System.out.println("Enter again");
 
-    public void AddScoreStudents(String id, Scores gpa) {
-        for (Students o : manageStudents)
-            if (o.getId().equals(id)) {
-                o.setScores(gpa);
-            }
+    }
+    public void CheckExistStudents() {
+        if (_ManageStudent.size() == 0)
+            System.out.println("Empty");
+    }
+    public void CheckExistStudents(String id) {
+        if (_ManageStudent.containsKey(id))
+            System.out.println("Empty");
+    }
+    public void CheckExistTeachers() {
+        if (_ManageTeacher.size() == 0)
+            System.out.println("Empty");
     }
 }
